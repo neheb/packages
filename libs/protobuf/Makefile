@@ -24,6 +24,7 @@ HOST_BUILD_PARALLEL:=1
 PKG_BUILD_PARALLEL:=1
 CMAKE_SOURCE_SUBDIR:=cmake
 
+include $(INCLUDE_DIR)/uclibc++.mk
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/host-build.mk
 include $(INCLUDE_DIR)/cmake.mk
@@ -33,7 +34,7 @@ define Package/protobuf/Default
   CATEGORY:=Libraries
   TITLE:=A structured data encoding library
   URL:=https://github.com/google/protobuf
-  DEPENDS:=+zlib +libpthread +libatomic +libstdcpp
+  DEPENDS:=+zlib +libpthread +libatomic $(CXX_DEPENDS)
 endef
 
 define Package/protobuf

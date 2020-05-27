@@ -23,6 +23,7 @@ PKG_LICENSE_FILES:=LICENSE.rst
 
 CMAKE_INSTALL:=1
 
+include $(INCLUDE_DIR)/uclibc++.mk
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
 
@@ -35,7 +36,7 @@ define Package/libfmt
   CATEGORY:=Libraries
   TITLE:=Small, safe and fast formatting library
   URL:=https://github.com/fmtlib/fmt
-  DEPENDS:=+libstdcpp
+  DEPENDS:=$(CXX_DEPENDS)
 endef
 
 define Package/libfmt/description

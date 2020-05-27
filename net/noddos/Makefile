@@ -23,6 +23,7 @@ PKG_LICENSE_FILES:=LICENSE.md
 PKG_BUILD_PARALLEL:=1
 CMAKE_INSTALL:=1
 
+include $(INCLUDE_DIR)/uclibc++.mk
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
 
@@ -31,7 +32,7 @@ define Package/noddos
 	CATEGORY:=Network
 	TITLE:=noddos -- device-aware cloud-powered firewall
 	URL:=https://www.noddos.io/
-	DEPENDS:=+libstdcpp +libnetfilter-conntrack +libcurl +libopenssl +openssl-util +ca-bundle +wget +bzip2 +libtins +ipset +libpthread +libyaml-cpp
+	DEPENDS:=$(CXX_DEPENDS) +libnetfilter-conntrack +libcurl +libopenssl +openssl-util +ca-bundle +wget +bzip2 +libtins +ipset +libpthread +libyaml-cpp
 endef
 
 define Package/noddos/description

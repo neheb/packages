@@ -19,6 +19,7 @@ PKG_CPE_ID:=cpe:/a:fishshell:fish
 
 PKG_BUILD_PARALLEL:=1
 
+include $(INCLUDE_DIR)/uclibc++.mk
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
 
@@ -27,7 +28,7 @@ define Package/fish
   CATEGORY:=Utilities
   SUBMENU:=Shells
   TITLE:=A smart and user-friendly command line shell
-  DEPENDS:=+libncurses +libstdcpp +libatomic +librt +libpcre2-32 @!USE_UCLIBC
+  DEPENDS:=+libncurses +libatomic +librt +libpcre2-32 @!USE_UCLIBC $(CXX_DEPENDS)
   URL:=https://fishshell.com
 endef
 

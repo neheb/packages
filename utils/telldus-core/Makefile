@@ -21,6 +21,7 @@ CMAKE_INSTALL:=1
 PKG_BUILD_PARALLEL:=0
 PKG_BUILD_DEPENDS:=!USE_GLIBC:argp-standalone
 
+include $(INCLUDE_DIR)/uclibc++.mk
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
 
@@ -29,7 +30,7 @@ define Package/telldus-core
 	CATEGORY:=Utilities
 	TITLE:=Telldus TellStick USB interface
 	URL:=https://telldus.com
-	DEPENDS:=+confuse +libftdi +libstdcpp
+	DEPENDS:=+confuse +libftdi $(CXX_DEPENDS)
 endef
 
 define Package/telldus-core/description

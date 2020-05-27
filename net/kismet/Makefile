@@ -26,7 +26,7 @@ define Package/kismet/Default
   CATEGORY:=Network
   TITLE:=Kismet
   MAINTAINER:=Jean-Michel lacroix <lacroix@lepine-lacroix.info>
-  DEPENDS:= $(CXX_DEPENDS) +libnl
+  DEPENDS:= $(CXX_DEPENDS) +libnl +uclibcxx
   URL:=http://www.kismetwireless.net/
   SUBMENU:=Wireless
 endef

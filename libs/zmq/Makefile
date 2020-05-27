@@ -25,6 +25,7 @@ PKG_CPE_ID:=cpe:/a:zeromq:libzmq
 PKG_BUILD_PARALLEL:=1
 CMAKE_BINARY_SUBDIR:=openwrt-build
 
+include $(INCLUDE_DIR)/uclibc++.mk
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
 
@@ -33,7 +34,7 @@ define Package/libzmq/default
   URL:=http://www.zeromq.org/
   SECTION:=libs
   CATEGORY:=Libraries
-  DEPENDS:=+libuuid +libpthread +librt +libstdcpp +USE_GLIBC:libbsd
+  DEPENDS:=+libuuid +libpthread +librt $(CXX_DEPENDS) +USE_GLIBC:libbsd
   PROVIDES:=libzmq
 endef
 

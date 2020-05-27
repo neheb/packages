@@ -23,6 +23,7 @@ PKG_LICENSE_FILES:=LICENSE
 PKG_BUILD_PARALLEL:=1
 PKG_INSTALL:=1
 
+include $(INCLUDE_DIR)/uclibc++.mk
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
 
@@ -30,7 +31,7 @@ define Package/taskwarrior
   TITLE:=taskwarrior
   SECTION:=utils
   CATEGORY:=Utilities
-  DEPENDS:=+libstdcpp +libuuid +libgnutls
+  DEPENDS:=$(CXX_DEPENDS) +libuuid +libgnutls
   URL:=https://taskwarrior.org/
 endef
 

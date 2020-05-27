@@ -20,6 +20,7 @@ PKG_MIRROR_HASH:=a2b5721faf0d43ddb4a892245ef382666149c83f3f97e558e1a6acf2402fb9f
 PKG_BUILD_PARALLEL:=1
 PKG_BUILD_DEPENDS:=nlohmannjson
 
+include $(INCLUDE_DIR)/uclibc++.mk
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
 
@@ -34,7 +35,7 @@ define Package/libipfs-http-client
   CATEGORY:=Libraries
   TITLE:=IPFS client library
   URL:=https://github.com/vasild/cpp-ipfs-http-client
-  DEPENDS:= +libcurl +libstdcpp +libatomic
+  DEPENDS:= +libcurl $(CXX_DEPENDS) +libatomic
 endef
 
 define Package/libipfs-http-client/description

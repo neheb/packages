@@ -22,6 +22,7 @@ PKG_LICENSE_FILES:=LICENSE
 PKG_BUILD_PARALLEL:=1
 CMAKE_INSTALL:=1
 
+include $(INCLUDE_DIR)/uclibc++.mk
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
 
@@ -30,7 +31,7 @@ define Package/libtins
   CATEGORY:=Libraries
   TITLE:=libtins
   URL:=https://libtins.github.io/
-  DEPENDS:=+libstdcpp +LIBTINS_ENABLE_PCAP:libpcap +LIBTINS_ENABLE_WPA2:libopenssl
+  DEPENDS:=$(CXX_DEPENDS) +LIBTINS_ENABLE_PCAP:libpcap +LIBTINS_ENABLE_WPA2:libopenssl
   MENU:=1
 endef
 

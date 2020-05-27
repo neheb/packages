@@ -43,6 +43,7 @@ PKG_CONFIG_DEPENDS:= \
 	$(patsubst %,CONFIG_PACKAGE_php7-mod-%,$(PHP7_MODULES)) \
 	CONFIG_PHP7_LIBXML CONFIG_PHP7_SYSTEMTZDATA
 
+include $(INCLUDE_DIR)/uclibc++.mk
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/nls.mk
 

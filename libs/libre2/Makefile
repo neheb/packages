@@ -15,13 +15,14 @@ PKG_LICENSE_FILES:=LICENSE
 CMAKE_INSTALL:=1
 PKG_BUILD_PARALLEL:=1
 
+include $(INCLUDE_DIR)/uclibc++.mk
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
 
 define Package/re2
   SECTION:=libs
   CATEGORY:=Libraries
-  DEPENDS:=+libstdcpp
+  DEPENDS:=$(CXX_DEPENDS)
   TITLE:=RE2 - C++ regular expression library
   URL:=https://github.com/google/re2
   ABI_VERSION:=6

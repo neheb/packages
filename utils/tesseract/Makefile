@@ -21,6 +21,7 @@ PKG_LICENSE_FILES:=LICENSE
 PKG_BUILD_PARALLEL:=1
 CMAKE_BINARY_SUBDIR:=openwrt-build
 
+include $(INCLUDE_DIR)/uclibc++.mk
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
 
@@ -30,7 +31,7 @@ define Package/tesseract
   CATEGORY:=Utilities
   TITLE:=Tesseract Open Source OCR Engine
   URL:=https://github.com/tesseract-ocr/tesseract
-  DEPENDS:=+libleptonica +libpthread +libstdcpp
+  DEPENDS:=+libleptonica +libpthread $(CXX_DEPENDS)
 endef
 
 TARGET_CFLAGS:=$(filter-out -O%,$(TARGET_CFLAGS)) -O3

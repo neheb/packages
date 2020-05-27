@@ -28,6 +28,7 @@ PKG_USE_MIPS16:=0
 HOST_BUILD_DEPENDS:=protobuf/host
 PKG_BUILD_DEPENDS:=ola/host
 
+include $(INCLUDE_DIR)/uclibc++.mk
 include $(INCLUDE_DIR)/host-build.mk
 include $(INCLUDE_DIR)/package.mk
 
@@ -36,7 +37,7 @@ define Package/ola
   CATEGORY:=Network
   TITLE:=Open Lighting Architecture Daemon
   URL:=https://www.openlighting.org/
-  DEPENDS:=+protobuf +libftdi1 +libusb-1.0 +libuuid +libstdcpp +libpthread +librt +zlib +libncurses +liblo +libmicrohttpd
+  DEPENDS:=+protobuf +libftdi1 +libusb-1.0 +libuuid +libpthread +librt +zlib +libncurses +liblo +libmicrohttpd
 endef
 
 define Package/ola/description

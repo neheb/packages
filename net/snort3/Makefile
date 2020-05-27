@@ -21,6 +21,7 @@ PKG_CPE_ID:=cpe:/a:snort:snort
 
 PKG_BUILD_PARALLEL:=1
 
+include $(INCLUDE_DIR)/uclibc++.mk
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
 
@@ -28,7 +29,7 @@ define Package/snort3
   SUBMENU:=Firewall
   SECTION:=net
   CATEGORY:=Network
-  DEPENDS:=+libstdcpp +libdaq3 +libdnet +libopenssl +libpcap +libpcre +libpthread +libuuid +zlib +libhwloc +libtirpc +luajit
+  DEPENDS:=$(CXX_DEPENDS) +libdaq3 +libdnet +libopenssl +libpcap +libpcre +libpthread +libuuid +zlib +libhwloc +libtirpc +luajit
   TITLE:=Lightweight Network Intrusion Detection System
   URL:=http://www.snort.org/
   MENU:=1

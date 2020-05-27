@@ -25,6 +25,7 @@ CMAKE_INSTALL:=1
 PKG_USE_MIPS16:=0
 PYTHON3_PKG_BUILD:=0
 
+include $(INCLUDE_DIR)/uclibc++.mk
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
 include ../../lang/python/python3-package.mk
@@ -52,7 +53,7 @@ endef
 define Package/libmraa
   $(call Package/libmraa/Default)
   TITLE:=Eclipse MRAA lowlevel IO C/C++ library
-  DEPENDS:=+libstdcpp +libjson-c @!arc @!armeb @!powerpc
+  DEPENDS:=$(CXX_DEPENDS) +libjson-c @!arc @!armeb @!powerpc
 endef
 
 define Package/libmraa/description

@@ -15,12 +15,13 @@ PKG_LICENSE_FILES:=COPYING
 PKG_INSTALL:=1
 PKG_BUILD_PARALLEL:=1
 
+include $(INCLUDE_DIR)/uclibc++.mk
 include $(INCLUDE_DIR)/package.mk
 
 define Package/libnpupnp
   SECTION:=libs
   CATEGORY:=Libraries
-  DEPENDS:=+libstdcpp +libexpat +libcurl +libmicrohttpd
+  DEPENDS:=$(CXX_DEPENDS) +libexpat +libcurl +libmicrohttpd
   TITLE:=A C++ base UPnP library
   URL:=https://framagit.org/medoc92/npupnp
 endef

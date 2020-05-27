@@ -21,6 +21,7 @@ PKG_LICENSE_FILES:=LICENSE.LGPL
 CMAKE_INSTALL:=1
 PKG_BUILD_PARALLEL:=1
 
+include $(INCLUDE_DIR)/uclibc++.mk
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
 
@@ -29,7 +30,7 @@ define Package/libebml
   CATEGORY:=Libraries
   TITLE:=a C++ libary to parse EBML files
   URL:=https://github.com/Matroska-Org/libebml
-  DEPENDS:=+libstdcpp
+  DEPENDS:=$(CXX_DEPENDS)
   BUILDONLY:=1
 endef
 

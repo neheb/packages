@@ -22,6 +22,7 @@ PKG_LICENSE_FILES:=LICENSE
 PKG_BUILD_PARALLEL:=1
 PKG_BUILD_DEPENDS:=MJPG_STREAMER_V4L2:libv4l zmq protobuf-c/host
 
+include $(INCLUDE_DIR)/uclibc++.mk
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
 

@@ -25,6 +25,7 @@ PKG_INSTALL:=1
 PKG_BUILD_PARALLEL:=0
 PKG_FIXUP:=autoreconf
 
+include $(INCLUDE_DIR)/uclibc++.mk
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/target.mk
 
@@ -32,7 +33,7 @@ define Package/boinc
   SECTION:=net
   CATEGORY:=Network
   TITLE:=BOINC client
-  DEPENDS:=+curl +bzip2 +libstdcpp +libopenssl +zlib
+  DEPENDS:=+curl +bzip2 $(CXX_DEPENDS) +libopenssl +zlib
   USERID:=boinc:boinc
   URL:=https://github.com/BOINC/boinc/
 endef

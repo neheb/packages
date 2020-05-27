@@ -24,6 +24,7 @@ HOST_BUILD_PARALLEL:=1
 PKG_BUILD_PARALLEL:=1
 CMAKE_INSTALL:=1
 
+include $(INCLUDE_DIR)/uclibc++.mk
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/host-build.mk
 include $(INCLUDE_DIR)/cmake.mk
@@ -33,7 +34,7 @@ define Package/log4cplus
   CATEGORY:=Libraries
   TITLE:=A simple to use C++ logging API
   URL:=https://sourceforge.net/p/log4cplus/wiki/Home/
-  DEPENDS:=+libstdcpp
+  DEPENDS:=$(CXX_DEPENDS)
 endef
 
 define Package/log4cplus/description

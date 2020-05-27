@@ -37,7 +37,7 @@ endef
 
 define Package/znc
   $(Package/znc/default)
-  DEPENDS:=+libopenssl +libstdcpp +ZNC_ICU:icu +zlib
+  DEPENDS:=+libopenssl $(CXX_DEPENDS) +ZNC_ICU:icu +zlib
   MENU:=1
 endef
 
@@ -277,6 +277,7 @@ $(eval $(call webskin,ice))
 
 PKG_CONFIG_DEPENDS += $(patsubst %,CONFIG_PACKAGE_%,$(ZNC_MODULES))
 
+include $(INCLUDE_DIR)/uclibc++.mk
 include $(INCLUDE_DIR)/package.mk
 
 CONFIGURE_ARGS += \

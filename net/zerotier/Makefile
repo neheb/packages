@@ -21,12 +21,13 @@ PKG_LICENSE_FILES:=LICENSE.txt
 PKG_ASLR_PIE:=0
 PKG_BUILD_PARALLEL:=1
 
+include $(INCLUDE_DIR)/uclibc++.mk
 include $(INCLUDE_DIR)/package.mk
 
 define Package/zerotier
   SECTION:=net
   CATEGORY:=Network
-  DEPENDS:=+libpthread +libstdcpp +kmod-tun +ip +libminiupnpc +libnatpmp
+  DEPENDS:=+libpthread $(CXX_DEPENDS) +kmod-tun +ip +libminiupnpc +libnatpmp
   TITLE:=Create flat virtual Ethernet networks of almost unlimited size
   URL:=https://www.zerotier.com
   SUBMENU:=VPN

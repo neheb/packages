@@ -24,6 +24,7 @@ PKG_USE_MIPS16:=0
 
 CMAKE_INSTALL:=1
 
+include $(INCLUDE_DIR)/uclibc++.mk
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
 
@@ -48,7 +49,6 @@ define Package/domoticz
 	+libopenssl \
 	+libopenzwave \
 	+libsqlite3 \
-	+libstdcpp \
 	+telldus-core \
 	+zlib
 endef

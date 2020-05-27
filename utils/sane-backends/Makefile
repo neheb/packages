@@ -24,6 +24,7 @@ PKG_CPE_ID:=cpe:/a:sane-backends_project:sane-backends
 PKG_INSTALL:=1
 PKG_BUILD_PARALLEL:=1
 
+include $(INCLUDE_DIR)/uclibc++.mk
 include $(INCLUDE_DIR)/package.mk
 
 SANE_BACKENDS:=
@@ -328,7 +329,7 @@ $(eval $(call SaneBackend,epsonds,EPSON scanners,+libjpeg +libusb-1.0)) ####
 $(eval $(call SaneBackend,epson2,EPSON scanners,+libusb-1.0))
 #$(eval $(call SaneBackend,escl,AirScan/eSCL devices,+libcurl +libxml2 +libnetsnmp +libavahi))
 $(eval $(call SaneBackend,fujitsu,Fujitsu flatbed and ADF scanners,+libusb-1.0))
-$(eval $(call SaneBackend,genesys,GL646 GL841 GL843 GL847 and GL124 based USB flatbed scanners,+libstdcpp +libusb-1.0 +libtiff))
+$(eval $(call SaneBackend,genesys,GL646 GL841 GL843 GL847 and GL124 based USB flatbed scanners,$(CXX_DEPENDS) +libusb-1.0 +libtiff))
 $(eval $(call SaneBackend,gphoto2,digital cameras supported by gphoto2,+libjpeg +libgphoto2))
 $(eval $(call SaneBackend,gt68xx,GT-68XX based USB flatbed scanners,+libusb-1.0))
 $(eval $(call SaneBackend,hp,HP ScanJet scanners,+libusb-1.0))

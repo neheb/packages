@@ -14,6 +14,7 @@ PKG_LICENSE_FILES:=COPYING
 
 PKG_BUILD_DEPENDS:=ninja/host
 
+include $(INCLUDE_DIR)/uclibc++.mk
 include $(INCLUDE_DIR)/host-build.mk
 include $(INCLUDE_DIR)/package.mk
 include ./ninja.mk
@@ -49,7 +50,7 @@ define Package/ninja
   CATEGORY:=Development
   TITLE:=ninja
   URL:=https://ninja-build.org/
-  DEPENDS:=+libstdcpp
+  DEPENDS:=$(CXX_DEPENDS)
 endef
 
 define Package/ninja/description

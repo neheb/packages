@@ -19,6 +19,7 @@ PKG_LICENSE:=Apache-2.0
 PKG_LICENSE_FILES:=COPYING
 
 include ../pypi.mk
+include $(INCLUDE_DIR)/uclibc++.mk
 include $(INCLUDE_DIR)/package.mk
 include ../python3-package.mk
 
@@ -28,7 +29,7 @@ define Package/python3-msgpack
   CATEGORY:=Languages
   TITLE:=MessagePack (de)serializer
   URL:=https://msgpack.org/
-  DEPENDS:=+python3-light +libstdcpp
+  DEPENDS:=+python3-light $(CXX_DEPENDS)
 endef
 
 define Package/python3-msgpack/description

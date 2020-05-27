@@ -17,12 +17,13 @@ PKG_SOURCE_URL:=http://old.openzwave.com/downloads
 PKG_HASH:=dc747c24cae11e4aa121252cc38ea92d1fbc587dc514737dd0e2b24191521c48
 PKG_INSTALL:=1
 
+include $(INCLUDE_DIR)/uclibc++.mk
 include $(INCLUDE_DIR)/package.mk
 
 define Package/openzwave/default
   URL:=http://openzwave.com
   MAINTAINER:=David Woodhouse <dwmw2@infradead.org>
-  DEPENDS:=+libpthread +libstdcpp
+  DEPENDS:=+libpthread $(CXX_DEPENDS)
 endef
 
 define Package/openzwave/description
@@ -54,7 +55,7 @@ endef
 TARGET_CPPFLAGS+=-Wno-format -Wno-format-security
 
 MAKE_FLAGS += \
-	LD="$(TARGET_CROSS)g++" \
+	LD="$(TARGET_CXX)" \
 	LIBDIR="$(PKG_BUILD_DIR)" \
 	PREFIX=$(CONFIGURE_PREFIX) \
 	USE_HID="no" \

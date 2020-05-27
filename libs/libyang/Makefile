@@ -23,6 +23,7 @@ CMAKE_INSTALL:=1
 PKG_BUILD_PARALLEL:=1
 CMAKE_BINARY_SUBDIR:=build
 
+include $(INCLUDE_DIR)/uclibc++.mk
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
 
@@ -39,7 +40,7 @@ define Package/libyang-cpp
   CATEGORY:=Libraries
   TITLE:=YANG data modeling C++ language library
   URL:=https://github.com/CESNET/libyang
-  DEPENDS:=+libyang +libstdcpp
+  DEPENDS:=+libyang $(CXX_DEPENDS)
 endef
 
 define Package/yanglint

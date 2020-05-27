@@ -29,6 +29,7 @@ PKG_INSTALL:=1
 PKG_USE_MIPS16:=0
 PKG_ASLR_PIE:=0
 
+include $(INCLUDE_DIR)/uclibc++.mk
 include $(INCLUDE_DIR)/host-build.mk
 include $(INCLUDE_DIR)/package.mk
 
@@ -39,7 +40,7 @@ define Package/node
   TITLE:=Node.js is a platform built on Chrome's JavaScript runtime
   URL:=https://nodejs.org/
   DEPENDS:=@HAS_FPU @(i386||x86_64||arm||aarch64||mipsel) \
-	   +libstdcpp +libopenssl +zlib +libnghttp2 +libuv \
+	   $(CXX_DEPENDS) +libopenssl +zlib +libnghttp2 +libuv \
 	   +libcares +libatomic +NODEJS_ICU_SYSTEM:icu +NODEJS_ICU_SYSTEM:icu-full-data
 endef
 

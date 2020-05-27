@@ -20,6 +20,7 @@ PKG_CPE_ID:=cpe:/a:taglib:taglib
 
 PKG_BUILD_PARALLEL:=1
 
+include $(INCLUDE_DIR)/uclibc++.mk
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
 
@@ -28,7 +29,7 @@ define Package/taglib
   CATEGORY:=Libraries
   TITLE:=taglib
   URL:=https://github.com/taglib/taglib
-  DEPENDS:=+libstdcpp
+  DEPENDS:=$(CXX_DEPENDS)
   BUILDONLY:=1
 endef
 

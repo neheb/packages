@@ -23,6 +23,7 @@ PKG_CONFIG_DEPENDS:= \
   CONFIG_DNSDIST_GNUTLS \
   CONFIG_DNSDIST_OPENSSL
 
+include $(INCLUDE_DIR)/uclibc++.mk
 include $(INCLUDE_DIR)/package.mk
 
 define Package/dnsdist/config

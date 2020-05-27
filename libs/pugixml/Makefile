@@ -19,6 +19,7 @@ PKG_LICENSE_FILES:=LICENSE
 
 PKG_BUILD_PARALLEL:=1
 
+include $(INCLUDE_DIR)/uclibc++.mk
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
 
@@ -27,7 +28,7 @@ define Package/pugixml
   CATEGORY:=Libraries
   TITLE:=pugixml
   URL:=https://github.com/zeux/pugixml
-  DEPENDS:=+libstdcpp
+  DEPENDS:=$(CXX_DEPENDS)
   BUILDONLY:=1
 endef
 

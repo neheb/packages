@@ -21,12 +21,13 @@ PKG_LICENSE_FILES:=COPYING
 
 PKG_CONFIG_DEPENDS:=CONFIG_EMAILRELAY_SUPPORT_VERBOSE_DBG CONFIG_EMAILRELAY_SSL
 
+include $(INCLUDE_DIR)/uclibc++.mk
 include $(INCLUDE_DIR)/package.mk
 
 define Package/emailrelay
   SECTION:=mail
   CATEGORY:=Mail
-  DEPENDS:=+EMAILRELAY_SSL:libopenssl +libstdcpp
+  DEPENDS:=+EMAILRELAY_SSL:libopenssl $(CXX_DEPENDS)
   TITLE:=A simple SMTP proxy and MTA
   URL:=http://emailrelay.sourceforge.net/
   MENU:=1

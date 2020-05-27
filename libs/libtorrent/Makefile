@@ -23,6 +23,7 @@ PKG_FIXUP:=autoreconf
 PKG_INSTALL:=1
 PKG_BUILD_PARALLEL:=1
 
+include $(INCLUDE_DIR)/uclibc++.mk
 include $(INCLUDE_DIR)/package.mk
 
 define Package/libtorrent
@@ -30,7 +31,7 @@ define Package/libtorrent
   CATEGORY:=Libraries
   TITLE:=Rakshasa's BitTorrent library
   URL:=https://rakshasa.github.io/rtorrent/
-  DEPENDS:=+libopenssl +libstdcpp +zlib
+  DEPENDS:=+libopenssl $(CXX_DEPENDS) +zlib
   BUILDONLY:=1
 endef
 

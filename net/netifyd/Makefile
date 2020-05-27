@@ -21,6 +21,7 @@ PKG_SOURCE_VERSION:=v3.05
 #PKG_SOURCE_VERSION:=09fa5fb202ba95ee2d73a4eb0fefe9265d15c780
 PKG_MIRROR_HASH:=2bcaa54f1660a30070f0c79a79259e96f169a9c7a0fe4a1195bb74f7de184204
 
+include $(INCLUDE_DIR)/uclibc++.mk
 include $(INCLUDE_DIR)/package.mk
 
 define Package/netifyd
@@ -32,7 +33,7 @@ define Package/netifyd
   # Explicitly depend on libstdcpp rather than $(CXX_DEPENDS).  At the moment
   # std::unordered_map is only available via libstdcpp which is required for
   # performance reasons.
-  DEPENDS+=+libstdcpp
+  DEPENDS+=$(CXX_DEPENDS)
 endef
 
 define Package/netifyd/description

@@ -31,6 +31,7 @@ HOST_BUILD_PARALLEL:=1
 PKG_BUILD_PARALLEL:=1
 PKG_USE_MIPS16:=0
 
+include $(INCLUDE_DIR)/uclibc++.mk
 include $(INCLUDE_DIR)/package.mk
 
 define Package/boost/Default
@@ -38,7 +39,7 @@ define Package/boost/Default
   CATEGORY:=Libraries
   TITLE:=Boost C++ source library
   URL:=https://www.boost.org
-  DEPENDS:=+libstdcpp +libpthread +librt
+  DEPENDS:=$(CXX_DEPENDS) +libpthread +librt
 endef
 
 define Package/boost/description
@@ -375,7 +376,7 @@ define Host/Compile
 endef
 
 CONFIGURE_PREFIX:=$(PKG_INSTALL_DIR)
-TARGET_LDFLAGS += -pthread -lrt -lstdc++ -Wl,--gc-sections,--as-needed,--print-gc-sections
+TARGET_LDFLAGS += -pthread -lrt -lc++ -Wl,--gc-sections,--as-needed,--print-gc-sections
 
 TARGET_CFLAGS += \
 	$(if $(CONFIG_SOFT_FLOAT),-DBOOST_NO_FENV_H) -fPIC -ffunction-sections -fdata-sections -flto

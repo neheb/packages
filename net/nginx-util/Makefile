@@ -5,6 +5,7 @@ PKG_VERSION:=1.4
 PKG_RELEASE:=3
 PKG_MAINTAINER:=Peter Stadler <peter.stadler@student.uibk.ac.at>
 
+include $(INCLUDE_DIR)/uclibc++.mk
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
 
@@ -17,7 +18,7 @@ define Package/nginx-ssl-util/default
   CATEGORY:=Network
   SUBMENU:=Web Servers/Proxies
   TITLE:=Nginx configurator including SSL
-  DEPENDS:=+libstdcpp +libubus +libubox +libpthread +libopenssl
+  DEPENDS:=$(CXX_DEPENDS) +libubus +libubox +libpthread +libopenssl
   # TODO: remove after a transition period (together with below and pkg nginx):
   # It actually removes nginx-util (replacing it by a dummy pkg) to avoid
   # conflicts with nginx-ssl-util*
@@ -80,7 +81,7 @@ $(eval $(call BuildPackage,nginx-ssl-util-nopcre))
 
 define Package/nginx-util
   TITLE:=Dummy package for removing nginx-util when upgrading.
-  DEPENDS:=+libstdcpp +libubus +libubox +libpthread
+  DEPENDS:=$(CXX_DEPENDS) +libubus +libubox +libpthread
   PKGARCH:=all
 endef
 

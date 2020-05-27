@@ -23,6 +23,7 @@ PKG_BUILD_DEPENDS:=libmatroska pugixml spdlog taglib
 PKG_BUILD_PARALLEL:=1
 PKG_CONFIG_DEPENDS:=CONFIG_BUILD_PATENTED
 
+include $(INCLUDE_DIR)/uclibc++.mk
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
 include $(INCLUDE_DIR)/nls.mk

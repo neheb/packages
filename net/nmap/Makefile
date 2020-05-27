@@ -28,12 +28,13 @@ PKG_BUILD_PARALLEL:=1
 PKG_INSTALL:=1
 PYTHON3_PKG_BUILD:=0
 
+include $(INCLUDE_DIR)/uclibc++.mk
 include $(INCLUDE_DIR)/package.mk
 include ../../lang/python/python3-package.mk
 
-NMAP_DEPENDS:=+libpcap +libstdcpp +zlib +libpcre
+NMAP_DEPENDS:=+libpcap $(CXX_DEPENDS) +zlib +libpcre
 NCAT_DEPENDS:=+libpcap
-NPING_DEPENDS:=+libpcap +libpthread +libstdcpp
+NPING_DEPENDS:=+libpcap +libpthread $(CXX_DEPENDS)
 
 define Package/nmap/default
   SUBMENU:=NMAP Suite

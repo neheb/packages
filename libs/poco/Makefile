@@ -31,6 +31,7 @@ PKG_BUILD_PARALLEL:=1
 PKG_INSTALL:=1
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(BUILD_VARIANT)/$(PKG_NAME)-$(_PKG_VERSION)
 
+include $(INCLUDE_DIR)/uclibc++.mk
 include $(INCLUDE_DIR)/package.mk
 
 define Package/poco
@@ -38,7 +39,7 @@ define Package/poco
   CATEGORY:=Libraries
   TITLE:=Poco C++ libraries
   URL:=https://www.pocoproject.org/
-  DEPENDS:=+libstdcpp +libpthread +librt @!arc
+  DEPENDS:=$(CXX_DEPENDS) +libpthread +librt @!arc
   MAINTAINER:=Jean-Michel Julien <jean-michel.julien@trilliantinc.com>
   VARIANT:=minimal
 endef

@@ -31,6 +31,7 @@ PKG_SOURCE_URL:=http://ftp.libelektra.org/ftp/elektra/releases
 
 PKG_BUILD_DEPENDS:= lua
 
+include $(INCLUDE_DIR)/uclibc++.mk
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
 include $(INCLUDE_DIR)/nls.mk
@@ -67,7 +68,7 @@ define Package/elektra-kdb
   CATEGORY:=Utilities
   TITLE:=Elektra kdb tool
   URL:=http://www.libelektra.org/
-  DEPENDS:=+libelektra-core +libstdcpp
+  DEPENDS:=+libelektra-core $(CXX_DEPENDS)
 endef
 
 define Package/elektra-kdb/description
@@ -117,7 +118,7 @@ endef
 define Package/libelektra-cpp
   $(call Package/libelektra/Default)
   TITLE:=Elektra plugins depending on libstdcpp
-  DEPENDS:=+libelektra-core +libstdcpp
+  DEPENDS:=+libelektra-core $(CXX_DEPENDS)
 endef
 
 CONTENT_ELEKTRA_CPP=ccode directoryvalue dump
@@ -133,7 +134,7 @@ endef
 define Package/libelektra-boost
   $(call Package/libelektra/Default)
   TITLE:=Elektra plugins depending on boost
-  DEPENDS:=+libelektra-core +libstdcpp +boost
+  DEPENDS:=+libelektra-core $(CXX_DEPENDS) +boost
 endef
 
 define Package/libelektra-boost/description
@@ -183,7 +184,7 @@ endef
 define Package/libelektra-xerces
   $(call Package/libelektra/Default)
   TITLE:=Elektra xerces based xml plugin
-  DEPENDS:=+libelektra-core +libstdcpp +libxerces-c
+  DEPENDS:=+libelektra-core $(CXX_DEPENDS) +libxerces-c
 endef
 
 define Package/libelektra-xerces/description
@@ -240,7 +241,7 @@ endef
 define Package/libelektra-python3
   $(call Package/libelektra/Default)
   TITLE:=Elektra python3 plugin
-  DEPENDS:=+libelektra-core +python3-light +libstdcpp
+  DEPENDS:=+libelektra-core +python3-light $(CXX_DEPENDS)
 endef
 
 define Package/libelektra-python3/description
@@ -252,7 +253,7 @@ endef
 define Package/libelektra-lua
   $(call Package/libelektra/Default)
   TITLE:=Elektra lua plugin
-  DEPENDS:=+libelektra-core +lua5.3 +libstdcpp
+  DEPENDS:=+libelektra-core +lua5.3 $(CXX_DEPENDS)
 endef
 
 define Package/libelektra-lua/description
@@ -264,7 +265,7 @@ endef
 define Package/libelektra-extra
   $(call Package/libelektra/Default)
   TITLE:=Additional elektra plugins
-  DEPENDS:=+libelektra-core +libstdcpp
+  DEPENDS:=+libelektra-core $(CXX_DEPENDS)
 endef
 
 define CONTENT_EXTRA_PLUGINS_TEXT

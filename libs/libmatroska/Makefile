@@ -22,6 +22,7 @@ CMAKE_INSTALL:=1
 PKG_BUILD_PARALLEL:=1
 PKG_BUILD_DEPENDS:=libebml
 
+include $(INCLUDE_DIR)/uclibc++.mk
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
 
@@ -30,7 +31,7 @@ define Package/libmatroska
   CATEGORY:=Libraries
   TITLE:=a C++ libary to parse Matroska files (.mkv and .mka)
   URL:=https://github.com/Matroska-Org/libmatroska
-  DEPENDS:=+libstdcpp
+  DEPENDS:=$(CXX_DEPENDS)
   BUILDONLY:=1
 endef
 

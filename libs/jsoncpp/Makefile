@@ -24,6 +24,7 @@ CMAKE_INSTALL:=1
 
 PKG_BUILD_DEPENDS:=meson/host
 
+include $(INCLUDE_DIR)/uclibc++.mk
 include $(INCLUDE_DIR)/package.mk
 include ../../devel/meson/meson.mk
 
@@ -35,7 +36,7 @@ define Package/jsoncpp
   CATEGORY:=Libraries
   TITLE:=jsoncpp
   URL:=https://github.com/open-source-parsers/jsoncpp
-  DEPENDS:=+libstdcpp
+  DEPENDS:=$(CXX_DEPENDS)
 endef
 
 define Package/jsoncpp/description

@@ -19,6 +19,7 @@ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://mosquitto.org/files/source/
 PKG_HASH:=548d73d19fb787dd0530334e398fd256ef3a581181678488a741a995c4f007fb
 
+include $(INCLUDE_DIR)/uclibc++.mk
 include $(INCLUDE_DIR)/package.mk
 
 define Package/mosquitto/default
@@ -145,7 +146,7 @@ endef
 define Package/libmosquittopp
     SECTION:=libs
     CATEGORY:=Libraries
-    DEPENDS:=libmosquitto +libstdcpp
+    DEPENDS:=libmosquitto $(CXX_DEPENDS)
     TITLE:= mosquitto - client c++ library
 endef
 

@@ -24,6 +24,7 @@ PKG_INSTALL:=1
 PKG_BUILD_PARALLEL:=1
 PKG_BUILD_DEPENDS:=libtorrent
 
+include $(INCLUDE_DIR)/uclibc++.mk
 include $(INCLUDE_DIR)/package.mk
 
 define Package/rtorrent/Default
@@ -32,7 +33,7 @@ define Package/rtorrent/Default
   CATEGORY:=Network
   TITLE:=BitTorrent client for ncurses
   URL:=https://github.com/rakshasa/rtorrent
-  DEPENDS:=+libcurl +libncurses +libpthread +libopenssl +libstdcpp +zlib
+  DEPENDS:=+libcurl +libncurses +libpthread +libopenssl $(CXX_DEPENDS) +zlib
 endef
 
 define Package/rtorrent/Default/description
