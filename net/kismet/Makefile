@@ -8,25 +8,28 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=kismet
-PKG_VERSION:=2016-07-R1
-PKG_RELEASE:=5
-
-PKG_LICENSE:=LGPLv2.1
-PKG_CPE_ID:=cpe:/a:kismet:kismet
+PKG_VERSION:=2020-09-R4
+PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
 PKG_SOURCE_URL:=http://www.kismetwireless.net/code
-PKG_HASH:=bdb21f153311f1ff3b16621bf0d6740f66369bf0982b0a289c9a12af8847e237
+PKG_HASH:=79c9c343cc055523ec1c8607bf63f26bb826d8ffaccc1e6e033c945c8ada664d
 
-include $(INCLUDE_DIR)/uclibc++.mk
+PKG_MAINTAINER:=Jean-Michel lacroix <lacroix@lepine-lacroix.info>
+PKG_LICENSE:=GPL-2.0-or-later
+PKG_LICENSE_FILES:=LICENSE
+PKG_CPE_ID:=cpe:/a:kismet:kismet
+
+PKG_INSTALL:=1
+PKG_BUILD_PARALLEL:=1
+
 include $(INCLUDE_DIR)/package.mk
 
 define Package/kismet/Default
   SECTION:=net
   CATEGORY:=Network
   TITLE:=Kismet
-  MAINTAINER:=Jean-Michel lacroix <lacroix@lepine-lacroix.info>
-  DEPENDS:= $(CXX_DEPENDS) +libnl
+  DEPENDS:=+libstdcpp +libnl @BROKEN
   URL:=http://www.kismetwireless.net/
   SUBMENU:=Wireless
 endef
@@ -85,17 +88,17 @@ endef
 
 CONFIGURE_ARGS += \
 	--sysconfdir=/etc/kismet \
+	--disable-python-tools \
+	--disable-debuglibs \
+	--disable-libnm \
+	--disable-libusb \
+	--disable-ubertooth \
+	--disable-lmsensors \
+	--disable-optimization
 
-CONFIGURE_VARS += \
-	CXXFLAGS="$$$$CXXFLAGS -fno-rtti"  \
-	LIBS="-lm" \
-	CLIENTCLIBS="-lm"
-
-define Build/Compile
-	$(MAKE) -C $(PKG_BUILD_DIR) \
-		LD="$(TARGET_CXX)" \
-		all
-endef
+MAKE_FLAGS += LD=$(TARGET_CXX)
+TARGET_CFLAGS += -fcommon
+TARGET_LDFLAGS += -latomic
 
 define Package/kismet/install
 	$(INSTALL_DIR) $(1)/usr/bin/
