@@ -16,7 +16,7 @@ PKG_SOURCE_URL:=https://alioth.debian.org/frs/download.php/file/4215
 PKG_HASH:=532f836b7a677eb0cb1dca8d70302b73729c3d30df26d58368d712e5cca041f1
 PKG_MAINTAINER:=Álvaro Fernández Rojas <noltari@gmail.com>
 
-PKG_LICENSE:=GPL-2.0
+PKG_LICENSE:=GPL-2.0-or-later
 PKG_LICENSE_FILES:=COPYING
 PKG_CPE_ID:=cpe:/a:minicom:minicom
 
