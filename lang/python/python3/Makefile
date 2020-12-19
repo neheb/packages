@@ -11,7 +11,7 @@ include $(TOPDIR)/rules.mk
 include ../python3-version.mk
 
 PKG_NAME:=python3
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 PKG_VERSION:=$(PYTHON3_VERSION).$(PYTHON3_VERSION_MICRO)
 
 PKG_SOURCE:=Python-$(PKG_VERSION).tar.xz
@@ -302,7 +302,6 @@ HOST_CONFIGURE_VARS += \
 endif
 
 HOST_CONFIGURE_ARGS+= \
-	--enable-optimizations \
 	--with-ensurepip=upgrade \
 	--with-system-expat=$(STAGING_DIR_HOSTPKG) \
 	--without-cxx-main \
