@@ -301,8 +301,8 @@ define Build/Compile
 
 	$(call GoCompiler/Package/Make, \
 		GOROOT_BOOTSTRAP="$(HOST_GO_ROOT)" \
-		GO_GCC_HELPER_CC="$(HOSTCC)" \
-		GO_GCC_HELPER_CXX="$(HOSTCXX)" \
+		GO_GCC_HELPER_CC="$(HOSTCC_NOCACHE)" \
+		GO_GCC_HELPER_CXX="$(HOSTCXX_NOCACHE)" \
 		$(PKG_GO_VARS) \
 	)
 
@@ -316,8 +316,8 @@ define Build/Compile
 		export $(GO_PKG_TARGET_VARS) ; \
 		$(CP) go go-host ; \
 		GOROOT_FINAL="$(PKG_GO_ROOT)" \
-		GO_GCC_HELPER_CC="$(TARGET_CC)" \
-		GO_GCC_HELPER_CXX="$(TARGET_CXX)" \
+		GO_GCC_HELPER_CC="$(TARGET_CC_NOCACHE)" \
+		GO_GCC_HELPER_CXX="$(TARGET_CXX_NOCACHE)" \
 		$(PKG_GO_VARS) \
 		./go-host install -a $(PKG_GO_INSTALL_ARGS) std cmd ; \
 		retval="$$$$?" ; \
