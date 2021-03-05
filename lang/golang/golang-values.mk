@@ -194,7 +194,7 @@ endif
 
 # Target Go
 
-GO_ARCH_DEPENDS:=@(aarch64||arm||i386||i686||mips||mips64||mips64el||mipsel||powerpc64||x86_64)
+GO_ARCH_DEPENDS:=@(aarch64||arm||i386||i686||mips||mips64||mips64el||mipsel||powerpc64||x86_64) @BROKEN
 
 
 # ASLR/PIE
