@@ -1,0 +1,239 @@
+From e5add0f5df6bf91542266104de57069a2e14f9c0 Mon Sep 17 00:00:00 2001
+From: Rosen Penev <rosenp@gmail.com>
+Date: Mon, 30 Nov 2020 14:58:00 -0800
+Subject: [PATCH] add arc support
+
+Signed-off-by: Rosen Penev <rosenp@gmail.com>
+---
+ include/seccomp.h.in      |  6 ++++++
+ src/Makefile.am           |  2 ++
+ src/arch-arcompact.c      | 29 +++++++++++++++++++++++++++++
+ src/arch-arcompact.h      | 25 +++++++++++++++++++++++++
+ src/arch-arcv2.c          | 29 +++++++++++++++++++++++++++++
+ src/arch-arcv2.h          | 25 +++++++++++++++++++++++++
+ src/arch.c                | 10 ++++++++++
+ src/gen_pfc.c             |  4 ++++
+ src/python/libseccomp.pxd |  2 ++
+ tools/util.c              |  4 ++++
+ 10 files changed, 136 insertions(+)
+ create mode 100644 src/arch-arcompact.c
+ create mode 100644 src/arch-arcompact.h
+ create mode 100644 src/arch-arcv2.c
+ create mode 100644 src/arch-arcv2.h
+
+--- a/include/seccomp.h.in
++++ b/include/seccomp.h.in
+@@ -217,6 +217,12 @@ struct scmp_arg_cmp {
+ #define SCMP_ARCH_RISCV64	AUDIT_ARCH_RISCV64
+ 
+ /**
++ * The Synopsis ARC architecture tokens
++ */
++#define SCMP_ARCH_ARCOMPACT	AUDIT_ARCH_ARCOMPACT
++#define SCMP_ARCH_ARCV2		AUDIT_ARCH_ARCV2
++
++/**
+  * Convert a syscall name into the associated syscall number
+  * @param x the syscall name
+  */
+--- a/src/Makefile.am
++++ b/src/Makefile.am
+@@ -30,6 +30,8 @@ SOURCES_ALL = \
+ 	arch-x86.h arch-x86.c \
+ 	arch-x86_64.h arch-x86_64.c \
+ 	arch-x32.h arch-x32.c \
++	arch-arcompact.h arch-arcompact.c \
++	arch-arcv2.h arch-arcv2.c \
+ 	arch-arm.h arch-arm.c \
+ 	arch-aarch64.h arch-aarch64.c \
+ 	arch-mips.h arch-mips.c \
+--- /dev/null
++++ b/src/arch-arcompact.c
+@@ -0,0 +1,29 @@
++/*
++ * This library is free software; you can redistribute it and/or modify it
++ * under the terms of version 2.1 of the GNU Lesser General Public License as
++ * published by the Free Software Foundation.
++ *
++ * This library is distributed in the hope that it will be useful, but WITHOUT
++ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
++ * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License
++ * for more details.
++ *
++ * You should have received a copy of the GNU Lesser General Public License
++ * along with this library; if not, see <http://www.gnu.org/licenses>.
++ */
++
++#include <linux/audit.h>
++
++#include "arch.h"
++#include "arch-arcompact.h"
++
++const struct arch_def arch_def_arcompact = {
++	.token = SCMP_ARCH_ARCOMPACT,
++	.token_bpf = AUDIT_ARCH_ARCOMPACT,
++	.size = ARCH_SIZE_32,
++	.endian = ARCH_ENDIAN_LITTLE,
++	.syscall_resolve_name = NULL,
++	.syscall_resolve_num = NULL,
++	.syscall_rewrite = NULL,
++	.rule_add = NULL,
++};
+--- /dev/null
++++ b/src/arch-arcompact.h
+@@ -0,0 +1,25 @@
++/*
++ * This library is free software; you can redistribute it and/or modify it
++ * under the terms of version 2.1 of the GNU Lesser General Public License as
++ * published by the Free Software Foundation.
++ *
++ * This library is distributed in the hope that it will be useful, but WITHOUT
++ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
++ * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License
++ * for more details.
++ *
++ * You should have received a copy of the GNU Lesser General Public License
++ * along with this library; if not, see <http://www.gnu.org/licenses>.
++ */
++
++#ifndef _ARCH_ARCOMPACT_H
++#define _ARCH_ARCOMPACT_H
++
++#include <inttypes.h>
++
++#include "arch.h"
++#include "system.h"
++
++extern const struct arch_def arch_def_arcompact;
++
++#endif
+--- /dev/null
++++ b/src/arch-arcv2.c
+@@ -0,0 +1,29 @@
++/*
++ * This library is free software; you can redistribute it and/or modify it
++ * under the terms of version 2.1 of the GNU Lesser General Public License as
++ * published by the Free Software Foundation.
++ *
++ * This library is distributed in the hope that it will be useful, but WITHOUT
++ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
++ * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License
++ * for more details.
++ *
++ * You should have received a copy of the GNU Lesser General Public License
++ * along with this library; if not, see <http://www.gnu.org/licenses>.
++ */
++
++#include <linux/audit.h>
++
++#include "arch.h"
++#include "arch-arcv2.h"
++
++const struct arch_def arch_def_arcv2 = {
++	.token = SCMP_ARCH_ARCV2,
++	.token_bpf = AUDIT_ARCH_ARCV2,
++	.size = ARCH_SIZE_32,
++	.endian = ARCH_ENDIAN_LITTLE,
++	.syscall_resolve_name = NULL,
++	.syscall_resolve_num = NULL,
++	.syscall_rewrite = NULL,
++	.rule_add = NULL,
++};
+--- /dev/null
++++ b/src/arch-arcv2.h
+@@ -0,0 +1,25 @@
++/*
++ * This library is free software; you can redistribute it and/or modify it
++ * under the terms of version 2.1 of the GNU Lesser General Public License as
++ * published by the Free Software Foundation.
++ *
++ * This library is distributed in the hope that it will be useful, but WITHOUT
++ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
++ * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License
++ * for more details.
++ *
++ * You should have received a copy of the GNU Lesser General Public License
++ * along with this library; if not, see <http://www.gnu.org/licenses>.
++ */
++
++#ifndef _ARCH_ARCV2_H
++#define _ARCH_ARCV2_H
++
++#include <inttypes.h>
++
++#include "arch.h"
++#include "system.h"
++
++extern const struct arch_def arch_def_arcv2;
++
++#endif
+--- a/src/arch.c
++++ b/src/arch.c
+@@ -33,6 +33,8 @@
+ #include "arch-x86.h"
+ #include "arch-x86_64.h"
+ #include "arch-x32.h"
++#include "arch-arcompact.h"
++#include "arch-arcv2.h"
+ #include "arch-arm.h"
+ #include "arch-aarch64.h"
+ #include "arch-mips.h"
+@@ -58,6 +60,10 @@ const struct arch_def *arch_def_native =
+ #else
+ const struct arch_def *arch_def_native = &arch_def_x86_64;
+ #endif /* __ILP32__ */
++#elif __ARC700__
++const struct arch_def *arch_def_native = &arch_def_arcompact;
++#elif __ARCHS__
++const struct arch_def *arch_def_native = &arch_def_arcv2;
+ #elif __arm__
+ const struct arch_def *arch_def_native = &arch_def_arm;
+ #elif __aarch64__
+@@ -130,6 +136,10 @@ const struct arch_def *arch_def_lookup(u
+ 		return &arch_def_x86_64;
+ 	case SCMP_ARCH_X32:
+ 		return &arch_def_x32;
++	case SCMP_ARCH_ARCOMPACT:
++		return &arch_def_arcompact;
++	case SCMP_ARCH_ARCV2:
++		return &arch_def_arcv2;
+ 	case SCMP_ARCH_ARM:
+ 		return &arch_def_arm;
+ 	case SCMP_ARCH_AARCH64:
+--- a/src/gen_pfc.c
++++ b/src/gen_pfc.c
+@@ -57,6 +57,10 @@ static const char *_pfc_arch(const struc
+ 		return "x86_64";
+ 	case SCMP_ARCH_X32:
+ 		return "x32";
++	case SCMP_ARCH_ARCOMPACT:
++		return "arcompact";
++	case SCMP_ARCH_ARCV2:
++		return "arcv2";
+ 	case SCMP_ARCH_ARM:
+ 		return "arm";
+ 	case SCMP_ARCH_AARCH64:
+--- a/src/python/libseccomp.pxd
++++ b/src/python/libseccomp.pxd
+@@ -36,6 +36,8 @@ cdef extern from "seccomp.h":
+         SCMP_ARCH_X86
+         SCMP_ARCH_X86_64
+         SCMP_ARCH_X32
++        SCMP_ARCH_ARCOMPACT
++        SCMP_ARCH_ARCV2
+         SCMP_ARCH_ARM
+         SCMP_ARCH_AARCH64
+         SCMP_ARCH_MIPS
+--- a/tools/util.c
++++ b/tools/util.c
+@@ -40,6 +40,10 @@
+ #else
+ #define ARCH_NATIVE		AUDIT_ARCH_X86_64
+ #endif /* __ILP32__ */
++#elif __ARC700__
++#define ARCH_NATIVE		AUDIT_ARCH_ARCOMPACT
++#elif __ARCHS__
++#define ARCH_NATIVE		AUDIT_ARCH_ARCV2
+ #elif __arm__
+ #define ARCH_NATIVE		AUDIT_ARCH_ARM
+ #elif __aarch64__
