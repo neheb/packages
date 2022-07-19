@@ -22,6 +22,7 @@ PKG_INSTALL:=1
 PYTHON3_PKG_BUILD:=0
 
 include $(INCLUDE_DIR)/package.mk
+include $(INCLUDE_DIR)/nls.mk
 include ../../lang/python/python3-package.mk
 
 #
