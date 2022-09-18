@@ -12,30 +12,22 @@ PKG_LICENSE:=BSD-3-Clause
 PKG_LICENSE_FILES:=COPYING
 PKG_CPE_ID:=cpe:/a:libtirpc_project:libtirpc
 
-PKG_INSTALL:=1
-PKG_BUILD_PARALLEL:=1
-HOST_BUILD_PARALLEL:=1
-
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/host-build.mk
+include $(INCLUDE_DIR)/meson.mk
 
 define Package/libtirpc
   SECTION:=libs
   CATEGORY:=Libraries
   TITLE:=Library TI RPC for RPC bindings
   URL:=http://libtirpc.sourceforge.net/
-  DEPENDS:=+libpthread
+  DEPENDS:=+USE_MUSL:libbsd
 endef
 
-CONFIGURE_ARGS += --disable-gssapi
-HOST_CONFIGURE_ARGS += --disable-gssapi --disable-shared
-
-ifeq ($(HOST_OS),Darwin)
-HOST_CONFIGURE_ARGS += --disable-symvers
-endif
-
-TARGET_CFLAGS += -DGQ
-HOST_CFLAGS += -DGQ
+MESON_ARGS += \
+	-Dauthdes=false \
+	-Dgssapi=disabled \
+	-Dipv6=true
 
 define Package/libtirpc/install
 	$(INSTALL_DIR) $(1)/usr/lib
@@ -48,7 +40,7 @@ define Build/InstallDev
 	$(INSTALL_DIR) $(1)/usr/include
 	$(INSTALL_DIR) $(1)/usr/lib
 	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libtirpc.{a,so*} $(1)/usr/lib
+	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libtirpc.so* $(1)/usr/lib
 	$(CP) $(PKG_INSTALL_DIR)/usr/include/* $(1)/usr/include
 	$(CP) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/libtirpc.pc $(1)/usr/lib/pkgconfig/libtirpc.pc
 endef
