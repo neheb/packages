@@ -72,11 +72,6 @@ MESON_HOST_ARGS += $(COMP_ARGS) -Dxattr=false -Dnls=disabled
 MESON_ARGS += $(COMP_ARGS) -Dxattr=true -Db_lto=true -Dnls=$(if $(CONFIG_BUILD_NLS),en,dis)abled
 
 define Build/InstallDev
-	$(INSTALL_DIR) $(1)/usr/bin
-	$(CP) \
-		$(PKG_INSTALL_DIR)/usr/bin/* \
-		$(1)/usr/bin/
-
 	$(INSTALL_DIR) $(1)/usr/include
 	$(CP) \
 		$(PKG_INSTALL_DIR)/usr/include/glib-2.0 \
