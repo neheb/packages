@@ -1,0 +1,10 @@
+--- a/src/tls.h
++++ b/src/tls.h
+@@ -30,7 +30,6 @@
+ #define _tls_h_
+ 
+ #include "mbedtls/ssl.h"
+-#include "mbedtls/net.h"
+ 
+ typedef struct tlsconf tlsconf_t;
+ typedef struct mbedtls_ssl_context* tlsctx_p;
