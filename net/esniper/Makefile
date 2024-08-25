@@ -30,7 +30,7 @@ define Package/esniper
   CATEGORY:=Network
   TITLE:=Simple, lightweight tool for sniping eBay auctions
   URL:=http://esniper.sourceforge.net/
-  DEPENDS:=+libcurl +ca-certificates
+  DEPENDS:=+libcurl +ca-bundle
 endef
 
 define Package/esniper/install
