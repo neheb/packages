@@ -25,6 +25,7 @@ PKG_CONFIG_DEPENDS:= \
 
 include ../../lang/python/pypi.mk
 include $(INCLUDE_DIR)/package.mk
+include $(INCLUDE_DIR)/nls.mk
 include ../../lang/python/python3-package.mk
 #for LINUX_UNAME_VERSION:
 include $(INCLUDE_DIR)/kernel.mk
