@@ -22,6 +22,7 @@ PKG_LICENSE_FILES:=LICENSE
 PKG_BUILD_FLAGS:=no-mips16
 
 include $(INCLUDE_DIR)/package.mk
+include $(INCLUDE_DIR)/nls.mk
 include $(INCLUDE_DIR)/meson.mk
 
 define Package/tio

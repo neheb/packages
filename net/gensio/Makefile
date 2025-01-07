@@ -36,6 +36,7 @@ PKG_CONFIG_DEPENDS:= \
 PKG_BUILD_DEPENDS:=PACKAGE_python3-gensio:swig/host
 
 include $(INCLUDE_DIR)/package.mk
+include $(INCLUDE_DIR)/nls.mk
 include ../../lang/python/python3-package.mk
 
 CONFIGURE_ARGS += \

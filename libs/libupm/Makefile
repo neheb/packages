@@ -26,6 +26,7 @@ PKG_BUILD_FLAGS:=no-mips16
 PYTHON3_PKG_BUILD:=0
 
 include $(INCLUDE_DIR)/package.mk
+include $(INCLUDE_DIR)/nls.mk
 include $(INCLUDE_DIR)/cmake.mk
 include ../../lang/python/python3-package.mk
 
