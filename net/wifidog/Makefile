@@ -72,6 +72,8 @@ CONFIGURE_ARGS += \
 
 endif
 
+TARGET_CFLAGS += -std=gnu11
+
 define Package/wifidog/install
 	$(INSTALL_DIR) $(1)/usr/bin
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/wifidog $(1)/usr/bin/
